@@ -6,6 +6,10 @@ document.addEventListener("DOMContentLoaded", function() {
             event.preventDefault(); 
             
             alert("Mengarahkan ke repositori GitHub...");
+
+            const linkGitHub = button.getAttribute('href');
+
+            window.open(linkGitHub, '_blank'); 
         });
     });
 });
@@ -38,7 +42,13 @@ document.addEventListener('DOMContentLoaded', function() {
             const email = document.getElementById('email').value;
             const message = document.getElementById('message').value;
 
-            if (!name || !email || !message) {
+            //buatlah agar inputan namanya dan deskripsi harus ada hurufnya
+            const namePattern = /[a-zA-Z]/;
+            if (!namePattern.test(name)) {
+                showAlert('Nama harus mengandung huruf!', 'danger');
+            } else if (!namePattern.test(message)) {
+                showAlert('Deskripsi harus mengandung huruf!', 'danger');
+            } else if (!email) {
                 showAlert('Mohon isi semua field sebelum mengirim!', 'danger');
             } else {
                 showAlert('Terima kasih! Pesan Anda telah berhasil dikirim.', 'success');
